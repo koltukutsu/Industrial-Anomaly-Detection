@@ -12,14 +12,14 @@ import numpy as np
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
-sys.path.append("./indad")
-from indad.data import MVTecDataset, StreamingDataset
-from indad.models import SPADE, PaDiM, PatchCore
-from indad.data import IMAGENET_MEAN, IMAGENET_STD
+sys.path.append("./src")
+from src.data import MVTecDataset, StreamingDataset
+from src.models import SPADE
+from src.data import IMAGENET_MEAN, IMAGENET_STD
 
 N_IMAGE_GALLERY = 4
 N_PREDICTIONS = 2
-METHODS = ["SPADE", "PaDiM", "PatchCore"]
+METHODS = ["SPADE"]
 BACKBONES = ["efficientnet_b0", "tf_mobilenetv3_small_100"]
 
 # keep the two smallest datasets
@@ -181,17 +181,6 @@ def main():
                 model = SPADE(
                     k=3,
                     backbone_name=app_backbone,
-                )
-            elif app_method == "PaDiM":
-                model = PaDiM(
-                    d_reduced=75,
-                    backbone_name=app_backbone,
-                )
-            elif app_method == "PatchCore":
-                model = PatchCore(
-                    f_coreset=0.01,
-                    backbone_name=app_backbone,
-                    coreset_eps=0.95,
                 )
             st.success(f"Loaded {app_method} model.")
         else:

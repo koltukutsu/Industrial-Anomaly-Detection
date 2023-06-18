@@ -26,13 +26,14 @@ $ pipenv install -r requirements.txt
 
 CLI:
 ```shell
-$ python indad/run.py METHOD [--dataset DATASET]
+$ python src/run.py METHOD [--dataset DATASET]
 ```
 Results can be found under `./results/`.
 
 Code example:
+
 ```python
-from indad.model import SPADE
+from src.model import SPADE
 
 model = SPADE(k=5, backbone_name="resnet18")
 
@@ -65,7 +66,7 @@ Right now there is no support for no ground truth pixel masks.
 ```
 
 ```shell
-$ python indad/run.py METHOD --dataset your_custom_dataset
+$ python src/run.py METHOD --dataset your_custom_dataset
 ```
 </details>
 
