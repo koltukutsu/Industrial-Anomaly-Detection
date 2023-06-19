@@ -131,10 +131,6 @@ class SPADE(KNNExtractor):
 		values, indices = torch.topk(distances.squeeze(), self.k, largest=False)
 
 		z_score = values.mean()
-
-		# Build the feature gallery out of the k nearest neighbours.
-		# The authors might have concatenated all features maps first, then check the minimum norm per pixel.
-		# Here, we check for the minimum norm first, then concatenate (sum) in the final layer.
 		scaled_s_map = torch.zeros(1,1,self.image_size,self.image_size)
 		for idx, fmap in enumerate(feature_maps):
 			nearest_fmaps = torch.index_select(self.feature_maps[idx], 0, indices)
